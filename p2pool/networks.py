@@ -123,6 +123,26 @@ nets = dict(
         VERSION_WARNING=lambda v: 'Upgrade Terracoin to >= 0.8.0.1!' if v < 80001 else None,
     ),
 
+    phoenixcoin=math.Object(
+        PARENT=networks.nets['phoenixcoin'],
+        SHARE_PERIOD=15, # seconds
+        CHAIN_LENGTH=60*60//10, # shares
+        REAL_CHAIN_LENGTH=60*60//10, # shares
+        TARGET_LOOKBEHIND=200, # shares
+        SPREAD=20, # blocks
+        IDENTIFIER='4665617468684222'.decode('hex'),
+        PREFIX='b131010ba6dabcde'.decode('hex'),
+        P2P_PORT=10555,
+        MIN_TARGET=0,
+        MAX_TARGET=2**256//2**20 - 1,
+        PERSIST=True,
+        WORKER_PORT=10554,
+        BOOTSTRAP_ADDRS='atlas.phoenixcoin.org prometheus.phoenixcoin.org'.split(' '),
+        ANNOUNCE_CHANNEL='#p2pool-pxc',
+        VERSION_CHECK=lambda v: True,
+        VERSION_WARNING=lambda v: 'Upgrade Phoenixcoin to >= 0.6.5.0!' if v < 60500 else None,
+    ),
+
 )
 for net_name, net in nets.iteritems():
     net.NAME = net_name
